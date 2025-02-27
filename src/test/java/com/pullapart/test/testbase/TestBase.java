@@ -1,4 +1,4 @@
-package com.pullapart.testbase;
+package com.pullapart.test.testbase;
 
 import com.pullapart.pages.HomePage;
 import com.pullapart.utils.JsonReader;
@@ -11,7 +11,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -71,7 +70,8 @@ public class TestBase {
     public Object[][] passData(Method method) throws IOException, ParseException
     {
         testConfig = new Properties();
-        testConfig.load(new FileInputStream("testconfig.properties"));
+        InputStream input = TestBase.class.getClassLoader().getResourceAsStream("testconfig.properties");
+        testConfig.load(input);
         String name = getClass().getName();
         String fileName = name.substring(name.lastIndexOf(".") + 1).trim();
         return JsonReader.getdata(testConfig.getProperty("dataLocation").concat(fileName).concat(".json"), method.getName());
