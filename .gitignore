@@ -1,7 +1,13 @@
 target/
+*test-output/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+*.png
+*debug.log
+/bin
+/Logs
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
