@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name = "UI Test Suite" parallel = "methods" thread-count = "5">
+    <listeners>
+        <listener class-name = "com.pullapart.extentreports.listener.ExtentReporterNG"/>
+        <listener class-name = "com.pullapart.test.retrytest.AnnotationTransformer"/>
+    </listeners>
+    <test name = "UI Test">
+        <groups>
+            <define name = "UI Regression">
+                <include name = "basicsearch"/>
+            </define>
+            <define name = "Other UI Regression">
+                <include name = "basicsearch"/>
+            </define>
+        </groups>
+        <packages>
+            <package name = "com.pullapart.test.testbase"/>
+            <package name = "com.pullapart.test"/>
+        </packages>
+    </test>
+</suite>
