@@ -16,4 +16,7 @@ public class HomePageLocators {
     public static final By SELECT_MODEL_XPATH = By.xpath("//span[contains(text(),'Select Model')]");
     public static final By BASIC_SEARCH_BUTTON_XPATH = By.xpath("//div[@class='basic-search']//button[contains(text(),'SEARCH')]");
 
+    public static final By USED_CARS_LINK_XPATH = By.xpath("//a[@class='nav-link  desktop-only'][contains(text(),'Used Cars')]");
+    public static final By FAQ_LINK_XPATH = By.xpath("//a[@class='nav-link  desktop-only'][contains(text(),'FAQ')]");
+
 }

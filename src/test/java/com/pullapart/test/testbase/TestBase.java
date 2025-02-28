@@ -69,12 +69,9 @@ public class TestBase {
     @DataProvider(name = "dataProvider")
     public Object[][] passData(Method method) throws IOException, ParseException
     {
-        testConfig = new Properties();
-        InputStream input = TestBase.class.getClassLoader().getResourceAsStream("testconfig.properties");
-        testConfig.load(input);
         String name = getClass().getName();
         String fileName = name.substring(name.lastIndexOf(".") + 1).trim();
-        return JsonReader.getdata(testConfig.getProperty("dataLocation").concat(fileName).concat(".json"), method.getName());
+        return JsonReader.getdata("src/main/java/com/pullapart/dataprovider/".concat(fileName).concat(".json"), method.getName());
     }
 
     @AfterMethod()

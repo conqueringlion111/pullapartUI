@@ -14,7 +14,7 @@ public class Waits extends PageBase {
         super(driver);
     }
 
-    final Duration maxWait = Duration.ofSeconds(15);
+    final Duration maxWait = Duration.ofSeconds(10);
 
     public void waitForTextPresentInElementBy(By byLocator, String textPresense) {
         WebDriverWait wait = new WebDriverWait(driver, maxWait);
