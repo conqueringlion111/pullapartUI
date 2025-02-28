@@ -3,7 +3,7 @@ package com.pullapart.test.uitests;
 import com.pullapart.test.testbase.TestBase;
 import org.testng.annotations.Test;
 
-public class BasicSearch extends TestBase {
+public class BasicSearchTest extends TestBase {
 
     @Test(groups = {"basicsearch"}, description = "test to perform basic search")
     public void performBasicSearchInGeorgia() throws InterruptedException {
