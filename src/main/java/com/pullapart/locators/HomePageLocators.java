@@ -6,7 +6,7 @@ public class HomePageLocators {
     public static final By SELECT_LOCATION_XPATH = By.xpath("//span[@id='select2-location-te-container']");
     public static final By SELECT_LOCATION_CONTAINS_TEXT_XPATH = By.xpath("//span[contains(text(),'Select Location')]");
     public static final By SELECT_LOCATION_INPUT_FIELD_XPATH = By.xpath("//input[@class='select2-search__field']");
-    public static final By SELECT_LOCATION_INPUT_FIELD_CSS = By.cssSelector(".select2-search__field");
+//    public static final By SELECT_LOCATION_INPUT_FIELD_CSS = By.cssSelector(".select2-search__field");
 
     public static By selectInputResult(String location) {
         return By.xpath("//li[contains(text(),'" + location + "')]");

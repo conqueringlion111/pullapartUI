@@ -19,7 +19,7 @@ public class HomePage extends PageBase {
 
     public HomePage fillInSearchField(String search) throws InterruptedException {
         SeleniumMethods sel = new SeleniumMethods(driver);
-        sel.selSendKeysBy(HomePageLocators.SELECT_LOCATION_INPUT_FIELD_CSS, search);
+        sel.selSendKeysBy(HomePageLocators.SELECT_LOCATION_INPUT_FIELD_XPATH, search);
         return new HomePage(driver);
     }
 

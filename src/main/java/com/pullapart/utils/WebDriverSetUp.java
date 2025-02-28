@@ -22,12 +22,7 @@ public class WebDriverSetUp {
             if (browserRemote.equalsIgnoreCase("chromeRemote")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("enable-automation");
-                options.addArguments("--no-sandbox");
-                options.addArguments("--disable-extensions");
-                options.addArguments("--dns-prefetch-disable");
-                options.addArguments("--disable-gpu");
-                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                options.addArguments("disable-infobars");
                 driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
             } else if (browserRemote.equalsIgnoreCase("chromeRemoteHeadless")) {
@@ -110,11 +105,11 @@ public class WebDriverSetUp {
                 throw new InvalidParameterException(browser + "- is not a valid web browser for web driver.");
             }
         }
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         return driver;
     }
 
     public static void quitDriver(WebDriver driver) {
-        driver.close();
+        driver.quit();
     }
 }
