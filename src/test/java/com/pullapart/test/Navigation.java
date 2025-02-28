@@ -1,9 +1,9 @@
-package com.pullapart.test.uitests;
+package com.pullapart.test;
 
 import com.pullapart.test.testbase.TestBase;
 import org.testng.annotations.Test;
 
-public class NavigationTest extends TestBase {
+public class Navigation extends TestBase {
 
     @Test(groups = {"navigation"}, description = "test to perform basic navigation to FAQ Used Cars and VIP Club pages")
     public void navigateToFAQPage() throws InterruptedException {

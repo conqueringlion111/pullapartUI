@@ -26,14 +26,14 @@ public class TestBase {
     protected String email;
     protected String password;
     protected String myPassword;
-    @BeforeSuite()
+    @BeforeSuite(alwaysRun = true)
     public void beforSuite() throws IOException {
         testConfig = new Properties();
         InputStream input = TestBase.class.getClassLoader().getResourceAsStream("testconfig.properties");
         testConfig.load(input);
     }
 
-    @BeforeMethod()
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"browserRemote"})
     public void beforeMethod(@Optional String browserRemote) throws MalformedURLException, InstantiationException, IllegalAccessException
     {
@@ -74,7 +74,7 @@ public class TestBase {
         return JsonReader.getdata("src/main/java/com/pullapart/dataprovider/".concat(fileName).concat(".json"), method.getName());
     }
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     public void afterMethod(ITestResult result) throws Exception
     {
         if(ITestResult.FAILURE==result.getStatus()) {
