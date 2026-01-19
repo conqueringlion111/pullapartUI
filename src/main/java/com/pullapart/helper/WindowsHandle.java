@@ -1,6 +1,6 @@
 package com.pullapart.helper;
 
-import com.pullapart.pagebase.PageBase;
+import com.pullapart.pages.PageBase;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Iterator;

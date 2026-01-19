@@ -1,6 +1,5 @@
 package com.pullapart.test;
 
-import com.pullapart.test.testbase.TestBase;
 import org.testng.annotations.Test;
 
 public class Navigation extends TestBase {

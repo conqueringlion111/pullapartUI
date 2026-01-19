@@ -3,15 +3,12 @@ package com.pullapart.pages;
 import com.pullapart.locators.InventorySearchPageLocators;
 import com.pullapart.utils.SeleniumMethods;
 import org.openqa.selenium.WebDriver;
-import com.pullapart.pagebase.PageBase;
 import org.testng.Assert;
 
 public class InventorySearchPage extends PageBase {
     public InventorySearchPage(WebDriver driver) {
         super(driver);
     }
-
-    SeleniumMethods sel = new SeleniumMethods(driver);
 
     public InventorySearchPage verifyNavigationToInventorySearchPageSuccessful() {
         boolean navigationSuccessful = sel.isElementPresent(InventorySearchPageLocators.INVENTORY_SEARCH_PAGE_CSS);

@@ -24,7 +24,7 @@ public class WebDriverSetUp {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("disable-infobars");
                 driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browserRemote.equalsIgnoreCase("chromeRemoteHeadless")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -36,21 +36,21 @@ public class WebDriverSetUp {
                 options.addArguments("--disable-gpu");
                 options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browserRemote.equalsIgnoreCase("firefoxRemote")) {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
-                driver.manage().window().maximize();
+
             } else if (browserRemote.equalsIgnoreCase("firefoxRemoteHeadless")) {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("--headless");
                 driver = new FirefoxDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browserRemote.equalsIgnoreCase("edgeRemote")) {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
-                driver.manage().window().maximize();
+
             } else if (browserRemote.equalsIgnoreCase("chromeGalaxyS5Headless")) {
                 Map<String, String> mobileEmulation = new HashMap<String, String>();
                 mobileEmulation.put("deviceName", "Galaxy S5");
@@ -67,25 +67,25 @@ public class WebDriverSetUp {
             if (browser.equalsIgnoreCase("Firefox")) {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
-                driver.manage().window().maximize();
+
             } else if (browser.equalsIgnoreCase("FireFoxHeadless")) {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions options = new FirefoxOptions();
                 options.addArguments("--headless");
                 driver = new FirefoxDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browser.equalsIgnoreCase("Chrome")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("disable-infobars");
                 driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browser.equalsIgnoreCase("ChromeHeadless")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
                 driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
+
             } else if (browser.equalsIgnoreCase("chromeGalaxyS5")) {
                 Map<String, String> mobileEmulation = new HashMap<String, String>();
                 mobileEmulation.put("deviceName", "Galaxy S5");
@@ -96,16 +96,16 @@ public class WebDriverSetUp {
             } else if (browser.equalsIgnoreCase("IE")) {
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
-                driver.manage().window().maximize();
+
             } else if (browser.equalsIgnoreCase("Edge")) {
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
-                driver.manage().window().maximize();
+
             } else {
                 throw new InvalidParameterException(browser + "- is not a valid web browser for web driver.");
             }
         }
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         return driver;
     }
 
