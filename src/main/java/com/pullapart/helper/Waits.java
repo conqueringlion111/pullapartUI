@@ -1,6 +1,6 @@
 package com.pullapart.helper;
 
-import com.pullapart.pagebase.PageBase;
+import com.pullapart.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,41 +9,37 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Waits extends PageBase {
+public class Waits {
+
+    private final WebDriver driver;
+    private final Duration maxWait = Duration.ofSeconds(5);
+
     public Waits(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
-    final Duration maxWait = Duration.ofSeconds(10);
-
-    public void waitForTextPresentInElementBy(By byLocator, String textPresense) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(byLocator), textPresense));
+    public WebElement waitForVisibility(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void waitForVisibilityOfElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(byLocator)));
+    public WebElement waitForPresence(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-
-    public void waitForPresenseOfElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.presenceOfElementLocated(byLocator));
+    public boolean waitForInvisibility(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
-    public void waitForInvisibilityOfWElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        Boolean bool = wait.until(ExpectedConditions.invisibilityOf(driver.findElement(byLocator)));
+    public boolean waitForTextPresent(By locator, String text) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
 
-    public void waitForElementClickable(WebElement webElemLoc) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.elementToBeClickable(webElemLoc));
-    }
-
-    public void waitForElementClickableBy(By byElemLoc) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.elementToBeClickable(byElemLoc));
+    public WebElement waitForClickable(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.elementToBeClickable(locator));
     }
 }

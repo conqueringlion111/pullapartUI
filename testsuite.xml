@@ -10,6 +10,7 @@
             <define name = "regression">
                 <include name = "basicsearch"/>
                 <include name = "navigation"/>
+                <include name = "usedcars"/>
             </define>
             <define name = "Other UI Regression">
                 <include name = "basicsearch"/>

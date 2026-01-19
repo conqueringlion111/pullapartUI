@@ -1,6 +1,5 @@
 package com.pullapart.pages;
 
-import com.pullapart.pagebase.PageBase;
 import org.openqa.selenium.WebDriver;
 
 public class FindAStorePage extends PageBase {
