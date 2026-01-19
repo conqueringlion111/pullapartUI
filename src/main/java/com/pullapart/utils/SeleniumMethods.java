@@ -2,11 +2,12 @@ package com.pullapart.utils;
 
 import com.pullapart.helper.Waits;
 import com.pullapart.pages.PageBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SeleniumMethods {
 
@@ -19,32 +20,32 @@ public class SeleniumMethods {
     }
 
     public void selClickBy(By byElemLocator) {
-        wait.waitForElementClickableBy(byElemLocator);
+        wait.waitForClickable(byElemLocator);
         driver.findElement(byElemLocator).click();
     }
 
     public void clickBy(By byElemLocator) {
-        wait.waitForElementClickableBy(byElemLocator);
+        wait.waitForClickable(byElemLocator);
         driver.findElement(byElemLocator).click();
     }
 
     public void selClearFieldBy(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         driver.findElement(byElemLocator).clear();
     }
 
     public void selSendKeysBy(By byElemLocator, String inputStr) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         driver.findElement(byElemLocator).sendKeys(inputStr);
     }
 
     public WebElement getWebElement(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         return driver.findElement(byElemLocator);
     }
 
     public String getText(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         return driver.findElement(byElemLocator).getText();
     }
 
@@ -58,13 +59,13 @@ public class SeleniumMethods {
     }
 
     public void actionsMoveToElementClickBy(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(byElemLocator)).click().build().perform();
     }
 
     public void jsClick(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
+        wait.waitForVisibility(byElemLocator);
         ((JavascriptExecutor)driver).executeScript("arguments[0].click();", driver.findElement(byElemLocator));
     }
 
@@ -84,12 +85,21 @@ public class SeleniumMethods {
     }
 
     public int findTotalElementCount(By elemLocator) {
-        wait.waitForVisibilityOfElementBy(elemLocator);
+        wait.waitForVisibility(elemLocator);
         return driver.findElements(elemLocator).size();
     }
 
-    public boolean isElementPresent(By byElemLocator) {
-        wait.waitForVisibilityOfElementBy(byElemLocator);
-        return !driver.findElements(byElemLocator).isEmpty();
+    public boolean isPresent(By locator) {
+        return driver.findElements(locator).size() > 0;
+    }
+
+    public boolean isVisible(By locator) {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(2))
+                    .until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 }

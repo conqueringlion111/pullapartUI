@@ -11,26 +11,28 @@ public class InventorySearchPage extends PageBase {
     }
 
     public InventorySearchPage verifyNavigationToInventorySearchPageSuccessful() {
-        boolean navigationSuccessful = sel.isElementPresent(InventorySearchPageLocators.INVENTORY_SEARCH_PAGE_CSS);
+        boolean navigationSuccessful = sel.isPresent(InventorySearchPageLocators.INVENTORY_SEARCH_PAGE_CSS);
         Assert.assertTrue(navigationSuccessful, "navigation to Inventory Search Page not successful");
         return new InventorySearchPage(driver);
     }
 
     public InventorySearchPage verifySearchSuccessful(String make, String model) {
-        //see if search actually returned results - "exact match"
-        boolean searchResults = sel.isElementPresent(InventorySearchPageLocators.EXACT_MATCH_LABEL_XPATH);
-        if (searchResults) {
+        //see if search failed
+        boolean searchFalse = sel.isPresent(InventorySearchPageLocators.SORRY_WE_COULDNT_FIND);
+
+        if(searchFalse) {
+            boolean navigationSuccessful = sel.isPresent(InventorySearchPageLocators.INVENTORY_SEARCH_PAGE_CSS);
+            Assert.assertTrue(navigationSuccessful, "navigation to Inventory Search Page not successful");
+        } else {
             //get to total result count
             int totalResult = sel.findTotalElementCount(InventorySearchPageLocators.SEARCH_RESULT_ROLES_XPATH);
             for (int i = 1; i <= totalResult; ++i) {
                 String index = String.valueOf(i);
-                Assert.assertTrue(sel.isElementPresent(InventorySearchPageLocators.findSearchedValue(index, make)));
-                Assert.assertTrue(sel.isElementPresent(InventorySearchPageLocators.findSearchedValue(index, model)));
+                Assert.assertTrue(sel.isPresent(InventorySearchPageLocators.findSearchedValue(index, make)));
+                Assert.assertTrue(sel.isPresent(InventorySearchPageLocators.findSearchedValue(index, model)));
             }
-        } else {
-            boolean navigationSuccessful = sel.isElementPresent(InventorySearchPageLocators.INVENTORY_SEARCH_PAGE_CSS);
-            Assert.assertTrue(navigationSuccessful, "navigation to Inventory Search Page not successful");
         }
+
         return new InventorySearchPage(driver);
     }
 }

@@ -13,7 +13,7 @@ public class FAQPage extends PageBase {
 
 
     public FAQPage verifySuccessfulNavigationToFAQPage() {
-        boolean navigationSuccess = sel.isElementPresent(FAQPageLocators.FAQ_DIV_XPATH);
+        boolean navigationSuccess = sel.isPresent(FAQPageLocators.FAQ_DIV_XPATH);
         Assert.assertTrue(navigationSuccess, "navigation to FAQ page not successful");
         return new FAQPage(driver);
     }

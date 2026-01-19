@@ -12,7 +12,7 @@ public class VIPClubPage extends PageBase {
     }
 
     public VIPClubPage verifySuccessfulNavigationToVIPClubPage() {
-        boolean navigation = sel.isElementPresent(VIPClubPageLocators.VIP_CLUB_MEMBERSHIP_H1_XPATH);
+        boolean navigation = sel.isPresent(VIPClubPageLocators.VIP_CLUB_MEMBERSHIP_H1_XPATH);
         Assert.assertTrue(navigation, "navigation to VIP Club Page not successful");
         return new VIPClubPage(driver);
     }

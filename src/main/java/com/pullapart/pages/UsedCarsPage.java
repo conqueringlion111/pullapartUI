@@ -11,7 +11,7 @@ public class UsedCarsPage extends PageBase {
     }
 
     public UsedCarsPage verifyNavigationToUsedCarPageSuccessful() {
-        boolean navigation = sel.isElementPresent(UsedCarsPageLocators.WHERE_WE_SELL_USED_CARS_H2_XPATH);
+        boolean navigation = sel.isPresent(UsedCarsPageLocators.WHERE_WE_SELL_USED_CARS_H2_XPATH);
         Assert.assertTrue(navigation, "navigation to Used Cars Page not successful");
         return new UsedCarsPage(driver);
     }
@@ -27,18 +27,18 @@ public class UsedCarsPage extends PageBase {
     }
 
     public UsedCarsPage verifySearchResultsBannerApears() throws InterruptedException {
-        Assert.assertTrue(sel.isElementPresent(UsedCarsPageLocators.RESULTS_DISPLAY_BANNER_WHERE_WE_SELL), "Search result " +
+        Assert.assertTrue(sel.isPresent(UsedCarsPageLocators.RESULTS_DISPLAY_BANNER_WHERE_WE_SELL), "Search result " +
                 "banner was not displayed");
         return this;
     }
 
     public UsedCarsPage verifySearchResultsLocationsDisplay() {
-        Assert.assertTrue(sel.isElementPresent(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS));
+        Assert.assertTrue(sel.isPresent(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS));
         return this;
     }
 
     public UsedCarsPage verifySearchResultsLocationsReturned() {
-        wait.waitForPresenseOfElementBy(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS);
+        wait.waitForVisibility(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS);
         int searchResultCount = sel.findTotalElementCount(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS);
         Assert.assertTrue(searchResultCount > 0);
         return this;

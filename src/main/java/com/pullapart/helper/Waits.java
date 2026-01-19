@@ -11,44 +11,35 @@ import java.time.Duration;
 
 public class Waits {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final Duration maxWait = Duration.ofSeconds(5);
 
     public Waits(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    final Duration maxWait = Duration.ofSeconds(5);
-
-    public void waitForTextPresentInElementBy(By byLocator, String textPresense) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(byLocator), textPresense));
+    public WebElement waitForVisibility(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void waitForVisibilityOfElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(byLocator)));
+    public WebElement waitForPresence(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-
-    public void waitForPresenseOfElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.presenceOfElementLocated(byLocator));
+    public boolean waitForInvisibility(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
-    public void waitForInvisibilityOfWElementBy(By byLocator) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        Boolean bool = wait.until(ExpectedConditions.invisibilityOf(driver.findElement(byLocator)));
+    public boolean waitForTextPresent(By locator, String text) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
 
-    public void waitForElementClickable(WebElement webElemLoc) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.elementToBeClickable(webElemLoc));
-    }
-
-    public void waitForElementClickableBy(By byElemLoc) {
-        WebDriverWait wait = new WebDriverWait(driver, maxWait);
-        wait.until(ExpectedConditions.elementToBeClickable(byElemLoc));
+    public WebElement waitForClickable(By locator) {
+        return new WebDriverWait(driver, maxWait)
+                .until(ExpectedConditions.elementToBeClickable(locator));
     }
 }
