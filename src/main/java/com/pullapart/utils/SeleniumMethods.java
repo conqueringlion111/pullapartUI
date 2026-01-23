@@ -20,6 +20,7 @@ public class SeleniumMethods {
     }
 
     public void selClickBy(By byElemLocator) {
+        wait.waitForVisibility(byElemLocator);
         wait.waitForClickable(byElemLocator);
         driver.findElement(byElemLocator).click();
     }
@@ -85,6 +86,7 @@ public class SeleniumMethods {
     }
 
     public int findTotalElementCount(By elemLocator) {
+        wait.waitForPresence(elemLocator);
         wait.waitForVisibility(elemLocator);
         return driver.findElements(elemLocator).size();
     }

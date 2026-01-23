@@ -12,7 +12,7 @@ import java.time.Duration;
 public class Waits {
 
     private final WebDriver driver;
-    private final Duration maxWait = Duration.ofSeconds(5);
+    private final Duration maxWait = Duration.ofSeconds(4);
 
     public Waits(WebDriver driver) {
         this.driver = driver;
