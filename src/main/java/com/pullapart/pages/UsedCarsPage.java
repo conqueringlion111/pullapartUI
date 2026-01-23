@@ -33,6 +33,7 @@ public class UsedCarsPage extends PageBase {
     }
 
     public UsedCarsPage verifySearchResultsLocationsDisplay() {
+        wait.waitForPresence(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS);
         Assert.assertTrue(sel.isPresent(UsedCarsPageLocators.USED_CARS_LOCATION_RESULTS));
         return this;
     }
